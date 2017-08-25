@@ -1,5 +1,3 @@
-angular.module('userApp', ['appRoutes'])
-
-.config(function() {
-	console.log('testing user application')
-})
+// Main app configuration file, angular app module
+// app name, [dependencies]
+angular.module('userApp', ['appRoutes', 'userControllers', 'userServices', 'ngAnimate']);

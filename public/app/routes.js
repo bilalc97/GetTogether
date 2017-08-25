@@ -1,3 +1,4 @@
+// routes module
 angular.module('appRoutes', ['ngRoute'])
 
 .config(function($routeProvider, $locationProvider) {
@@ -11,8 +12,16 @@ angular.module('appRoutes', ['ngRoute'])
 		templateUrl: 'app/views/pages/about.html'
 	})
 
+	.when('/register', {
+		templateUrl: 'app/views/pages/users/register.html',
+		controller: 'regCtrl',
+		controllerAs: 'register'	// nick name
+	})
+
 	.otherwise({ redirectTo: '/'});
 
+	// this will make it so that # symbols arent required in the route
+	// instead of http://localhost:8000/#/register, it will be http://localhost:8000/register
 	$locationProvider.html5Mode({
 		enabled: true,
 		requireBase:false

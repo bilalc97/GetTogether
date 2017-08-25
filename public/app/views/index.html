@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/">
+    <base href="/">   <!-- This is added so that # symbols aren't necessary in the url -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+    <!-- Main Angular Files -->
     <script src="assets/js/angular.js"></script>
     <script src="assets/js/angular-route.js"></script>
+    <script src="assets/js/angular-animate.js"></script>
+
+    <!-- Angular Config/Routes -->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
+
+    <!-- Angular Controllers -->
+    <script src="app/controllers/userCtrl.js"></script>
+
+    <!-- Angular Services -->
+    <script src="app/services/userServices.js"></script>
 
     <title>Theme Template for Bootstrap</title>
 
   </head>
 
+  <!-- Angular app in app.js -->
   <body ng-app="userApp">
 
     <!-- Fixed navbar -->
@@ -37,7 +51,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/register">Register</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -64,12 +78,14 @@
       </div>
 
       <div ng-view></div>
+      <!-- HTML will be injected here -->
 
     </div> <!-- /container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <!-- from the assets folder -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/bootstrap.js"></script>
   </body>

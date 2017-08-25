@@ -1,1 +1,39 @@
-<h1>Hello from register route.</h1>
+<div class="page-header">
+	<h1>User Registration</h1>
+</div>
+
+<!-- ng-submit -> when form is submitted, regUser from userCtrl.js is executed with regData -->
+<form ng-submit="register.regUser(regData)">
+	<!-- Email -->
+	<label>Email</label>
+	<input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
+	<br>
+	<!-- Username -->
+	<label>Username</label>
+	<input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="register.regData.username">
+	<br>
+	<!-- Password -->
+	<label>Password</label>
+	<input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="register.regData.password">
+	<br>
+	<button class="btn-primary" type="submit">Register</button>
+</form>
+
+<br>
+
+<div class="jumbotron text-center" ng-show="register.loading">
+	<span class="glyphicon glyphicon-repeat-spinner">
+	<p>Loading...</p>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="register.successMsg">
+	<div class="alert alert-success">{{ register.successMsg }}</div>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="register.errorMsg">
+	<div class="alert alert-danger">{{ register.errorMsg }}</div>
+</div>

@@ -18,6 +18,10 @@ angular.module('appRoutes', ['ngRoute'])
 		controllerAs: 'register'	// nick name
 	})
 
+	.when('/login', {
+		templateUrl: 'app/views/pages/users/login.html'
+	})
+
 	.otherwise({ redirectTo: '/'});
 
 	// this will make it so that # symbols arent required in the route

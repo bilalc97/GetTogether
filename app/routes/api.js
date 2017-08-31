@@ -1,7 +1,8 @@
 var User 		= require('../models/user');	// importing user schema from given path
 
 module.exports = function(router) {				// need to export to server.js
-	http://localhost:8000/api/users
+	// http://localhost:8000/api/users
+	// USER REGISTRATION
 	router.post('/users', function(req, res) {
 		var user = new User();
 		user.username = req.body.username;
@@ -19,5 +20,30 @@ module.exports = function(router) {				// need to export to server.js
 			});
 		}
 	});
-	return router;		// this router object along with all of its routes will be returned for server.js
+
+	// http://localhost:8000:/api/authentication
+	// USER LOGIN
+	router.post('/authenticate', function(req, res) {
+		User.findOne({ username: req.body.username }).select('email username password').exec(function(err, user) {
+			if (err) throw err;
+
+			if (!user) {
+				res.json({ success: false, message: 'Could not authenticate user' });
+			} else if (user) {
+				if (req.body.password) {
+					var validPassword = user.comparePassword(req.body.password);
+				} else {
+					res.json({ success: false, message: 'No password provided' });
+				}
+				if (!validPassword) {
+					res.json({ success: false, message: 'Could not authenticate password' });
+				} else {
+					res.json({ success: true, message: 'User Authenticated!' });
+				}
+			}
+		});
+	});
+
+	return router;
+	// this router object along with all of its routes will be returned for server.js
 }

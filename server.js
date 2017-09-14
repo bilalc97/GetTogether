@@ -1,4 +1,4 @@
-// use "nodemon server.js" instead of "node start server.js"
+// use "nodemon server.js" instead of "node server.js"
 // using nodemon will automatically restart the server when any changes are saved
 
 var express 	= require('express');			// web application framework that provides a set of features

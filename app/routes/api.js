@@ -1,4 +1,6 @@
 var User 		= require('../models/user');	// importing user schema from given path
+var jwt			= require('jsonwebtoken');
+var secret 		= 'harrypotter'
 
 module.exports = function(router) {				// need to export to server.js
 	// http://localhost:8000/api/users
@@ -38,10 +40,32 @@ module.exports = function(router) {				// need to export to server.js
 				if (!validPassword) {
 					res.json({ success: false, message: 'Could not authenticate password' });
 				} else {
-					res.json({ success: true, message: 'User Authenticated!' });
+					var token = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
+					res.json({ success: true, message: 'User Authenticated!', token: token });
 				}
 			}
 		});
+	});
+
+	router.use(function(req, res, next) {
+		var token = req.body.token || req.body.query || req.headers['x-access-token'];
+
+		if (token) {
+			jwt.verify(token, secret, function(err, decoded) {
+				if (err) {
+					res.json({ success: false, message: 'Token Invalid' });
+				} else {
+					req.decoded = decoded;
+					next();
+				}
+			});
+		} else {
+			res.json({ success: false, message: 'No token provided' });
+		}
+	});
+
+	router.post('/me', function(req, res) {
+		res.send(req.decoded);
 	});
 
 	return router;

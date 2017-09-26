@@ -1,3 +1,5 @@
 <div class="page-header">
-	<h1>Hello {{ main.username }} from home route.</h1>
+	<h1>Welcome {{ main.username }}</h1>
+	<p ng-show="!main.isLoggedIn">Login or register to create and join events!</p>
+	<p ng-show="main.isLoggedIn">Join the events below or create your own!</p>
 </div>

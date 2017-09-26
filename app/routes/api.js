@@ -1,6 +1,7 @@
-var User 		= require('../models/user');	// importing user schema from given path
+var User 		= require('../models/user');	// importing schemas from given path
+var Event 	 	= require('../models/event');
 var jwt			= require('jsonwebtoken');
-var secret 		= 'harrypotter'
+var secret 		= 'dwyanewade'
 
 module.exports = function(router) {				// need to export to server.js
 	// http://localhost:8000/api/users
@@ -47,6 +48,32 @@ module.exports = function(router) {				// need to export to server.js
 		});
 	});
 
+	// EVENT CREATION
+	router.post('/events', function(req, res) {
+		var event = new Event();
+		event.name = req.body.name;
+		event.creator = req.body.creator;
+		event.earliest = new Date(req.body.earliest);
+		event.latest = new Date(req.body.latest);
+		event.duration = parseInt(req.body.duration);
+		if (req.body.name == null || req.body.name == '' || req.body.creator == null || req.body.creator == '' || req.body.earliest == null || req.body.earliest == '' || req.body.latest == null || req.body.latest == '' || req.body.duration == null || req.body.duration == '') {
+			res.json({ success: false, message: 'Ensure all information was provided.' });
+		} else {
+			if (event.latest < event.earliest) {
+				res.json({ success: false, message: 'Ensure the latest date occurs after earliest.' });
+			} else {
+				event.save(function(err) {
+					if (err) {
+						res.json({ success: false, message: 'Event name already exists.' });
+					} else {
+						res.json({ success: true, message: 'Event created.' });
+					}
+				});
+			}
+		}
+	});
+
+	// This will be done for every request to check for JSON web tokens
 	router.use(function(req, res, next) {
 		var token = req.body.token || req.body.query || req.headers['x-access-token'];
 

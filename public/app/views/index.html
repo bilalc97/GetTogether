@@ -30,7 +30,7 @@
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
 
-    <title>Theme Template for Bootstrap</title>
+    <title>GetTogether</title>
 
   </head>
 
@@ -65,12 +65,9 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Theme example</h1>
-        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+        <div ng-view></div>
+        <!-- HTML will be injected here -->
       </div>
-
-      <div ng-view></div>
-      <!-- HTML will be injected here -->
 
     </div> <!-- /container -->
 

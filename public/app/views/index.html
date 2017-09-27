@@ -25,10 +25,12 @@
     <!-- Angular Controllers -->
     <script src="app/controllers/userCtrl.js"></script>
     <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/eventCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
+    <script src="app/services/eventServices.js"></script>
 
     <title>GetTogether</title>
 
@@ -65,8 +67,9 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <div ng-view></div>
-        <!-- HTML will be injected here -->
+        <div ng-view>
+          <!-- HTML will be injected here -->
+        </div>
       </div>
 
     </div> <!-- /container -->

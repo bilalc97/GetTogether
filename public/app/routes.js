@@ -26,6 +26,12 @@ angular.module('appRoutes', ['ngRoute'])
 		templateUrl: 'app/views/pages/users/profile.html'
 	})
 
+	.when('/eventCreation', {
+		templateUrl: 'app/views/pages/eventCreation.html',
+		controller: 'eventCtrl',
+		controllerAs: 'event'	// nick name
+	})
+
 	.otherwise({ redirectTo: '/'});
 
 	// this will make it so that # symbols arent required in the route

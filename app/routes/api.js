@@ -11,6 +11,7 @@ module.exports = function(router) {				// need to export to server.js
 		user.username = req.body.username;
 		user.password = req.body.password;
 		user.email = req.body.email;
+		console.log(req.body.creator);
 		if (req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '') {
 			res.json({ success: false, message: 'Ensure username, password and email were all provided.' });
 		} else {
@@ -56,6 +57,10 @@ module.exports = function(router) {				// need to export to server.js
 		event.earliest = new Date(req.body.earliest);
 		event.latest = new Date(req.body.latest);
 		event.duration = parseInt(req.body.duration);
+		event.participants = [{
+			name: req.body.creator,
+			availability: []
+		}];
 		if (req.body.name == null || req.body.name == '' || req.body.creator == null || req.body.creator == '' || req.body.earliest == null || req.body.earliest == '' || req.body.latest == null || req.body.latest == '' || req.body.duration == null || req.body.duration == '') {
 			res.json({ success: false, message: 'Ensure all information was provided.' });
 		} else {
@@ -71,6 +76,13 @@ module.exports = function(router) {				// need to export to server.js
 				});
 			}
 		}
+	});
+
+	// EVENT CREATION
+	router.get('/allEvents', function(req, res) {
+		Event.find(function (err, docs) {
+        	res.send(docs);
+    	});
 	});
 
 	// This will be done for every request to check for JSON web tokens

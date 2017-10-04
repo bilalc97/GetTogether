@@ -4,24 +4,23 @@
 
 <form ng-submit="event.createEvent(creationData)">
 
+	<label>Creator</label>
+	<p>{{ main.username }}</p>
+
 	<label>Name</label>
 	<input class="form-control" type="text" name="name" placeholder="please enter name of event" ng-model="event.creationData.name">
 	<br>
 
-	<label>Creator</label>
-	<input class="form-control" type="text" name="creator" placeholder="please enter username" ng-model="event.creationData.creator">
-	<br>
-
 	<label>Earliest</label>
-	<input class="form-control" type="text" name="earliest" placeholder="please enter earliest date" ng-model="event.creationData.earliest">
+	<input class="form-control" type="text" name="earliest" placeholder="yyyy/mm/dd" ng-model="event.creationData.earliest">
 	<br>
 
 	<label>Latest</label>
-	<input class="form-control" type="text" name="latest" placeholder="please enter latest date" ng-model="event.creationData.latest">
+	<input class="form-control" type="text" name="latest" placeholder="yyyy/mm/dd" ng-model="event.creationData.latest">
 	<br>
 
 	<label>Duration</label>
-	<input class="form-control" type="text" name="duration" placeholder="please enter event duration" ng-model="event.creationData.duration">
+	<input class="form-control" type="text" name="duration" placeholder="minutes" ng-model="event.creationData.duration">
 	<br>
 
 	<button class="btn-primary" type="submit">Create</button>

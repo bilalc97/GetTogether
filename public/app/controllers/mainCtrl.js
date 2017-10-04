@@ -26,17 +26,14 @@ angular.module('mainController', ['authServices'])
 		Auth.login(app.loginData).then(function(data) {
 			if (data.data.success) {
 				app.loading = false;
-				// Create success message
 				app.successMsg = data.data.message + '...Redirecting';
-				// Redirect to home page
 				$timeout(function() {
 					$location.path('/about');
-					app.loginData = '';
+					app.loginData = {};
 					app.successMsg = false;
 				}, 2000);
 			} else {
 				app.loading = false;
-				// Create error message
 				app.errorMsg = data.data.message;
 			}
 		});

@@ -8,6 +8,7 @@ var EventSchema = new Schema({
 	earliest: { type: Date, required: true },
 	latest: {type: Date, required: true},
 	duration: {type: Number, min: 0, required: true},
+	participants: [{name: String, availability: [{start: Date, end: Date}]}],
 });
 
 // export this schema to be used elsewhere
